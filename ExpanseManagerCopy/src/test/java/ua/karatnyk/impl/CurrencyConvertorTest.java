@@ -140,7 +140,7 @@ class CurrencyConvertorTest {
 	        assertThrows(exceptionClass,
 	        		() -> CurrencyConvertor.convert(goodAmount, from, to, conversion), expectedOutcome);
 	    }
-		//White box testing
+		//White box testing coverage
 		// si ca fonctionne pour les petits amouts 
 	    public void isConvertingVerySmallAmount10k() {
 	        Double goodAmount = 0000.01d;
