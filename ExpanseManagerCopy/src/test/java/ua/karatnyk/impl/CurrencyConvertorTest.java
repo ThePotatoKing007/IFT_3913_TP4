@@ -17,24 +17,25 @@ class CurrencyConvertorTest {
 		private String from;
 		private String to;
 		private static CurrencyConversion conversion;
-		public Class<Exception> exceptionClass = Exception.class;
+		public Class<Exception> exceptionClass = Exception.class; //Pour les exceptions
 		
 		
 		@BeforeAll
 		public static void setup() {
 			
-			conversion = new CurrencyConversion();
+			conversion = new CurrencyConversion(); //la conversion entre les devises
 		}
 		
 		@BeforeEach
 		public void init() {
 			
-			amount = 1.00; 
+			amount = 1.00;  // valeurs par default
 			from = "CAD";
 			to = "USD";
 			
 		}
 		
+		//si la premiere devise n'existe pas
 		@Test
 	    public void isNotConvertingFrom() {
 	        String wrongFrom = "ETH";
@@ -44,6 +45,7 @@ class CurrencyConvertorTest {
 	                () -> CurrencyConvertor.convert(amount, wrongFrom, to, conversion), expectedOutcome);
 	    }
 		
+		//si la deuxieme devise n'existe pas 
 		@Test
 	    public void isNotConvertingTo() {
 	        String wrongTo = "ETH";
@@ -53,6 +55,7 @@ class CurrencyConvertorTest {
 	                () -> CurrencyConvertor.convert(amount, from, wrongTo, conversion), expectedOutcome);
 	    }
 		
+		//si ca donne le bon resultat lorsque ca fonctionne
 		@Test
 		public void isConvertingValidCurrency() throws ParseException {
 			
@@ -63,6 +66,7 @@ class CurrencyConvertorTest {
 			assertTrue(results == CurrencyConvertor.convert(amount, from, to, conversion)); // to find if it's a double
 		}
 		
+		//si ca fonctionne lorsque la premiere et deuxieme devise sont pareil
 		@Test
 	    void isSupportingSameCurrency() throws ParseException {
 	        // USD, CAD, GBP, EUR, CHF, INR, AUD
@@ -87,6 +91,7 @@ class CurrencyConvertorTest {
 
 	    }
 		
+		//si ca ne fonctionne pas lorsque le montant est trop grand
 		@Test
 	    public void isNotConvertingAmountMoreThan10k() {
 	        Double superiorAmount = 99999.00d;
@@ -96,6 +101,7 @@ class CurrencyConvertorTest {
 	                () -> CurrencyConvertor.convert(superiorAmount, from, to, conversion), expectedOutcome);
 	    }
 		
+		//si ca ne fonctionne pas lorsque le montant est trop petit
 		@Test
 	    public void isNotConvertingAmountLessThan0() {
 	        Double inferiorAmount = -5.00d;
@@ -105,6 +111,7 @@ class CurrencyConvertorTest {
 	        		() -> CurrencyConvertor.convert(inferiorAmount, from, to, conversion), expectedOutcome);
 	    }
 		
+		//si ca fonctionne lorsque le montant est maximal
 		@Test
 	    public void isConvertingAmount10k() {
 	        Double goodAmount = 10000.00d;
@@ -114,6 +121,7 @@ class CurrencyConvertorTest {
 	        		() -> CurrencyConvertor.convert(goodAmount, from, to, conversion), expectedOutcome);
 	    }
 		
+		//si ca fonctionne lorsque le montant est medium
 		@Test
 	    public void isConvertingAmount500() {
 	        Double goodAmount = 500.00d;
@@ -123,6 +131,7 @@ class CurrencyConvertorTest {
 	        		() -> CurrencyConvertor.convert(goodAmount, from, to, conversion), expectedOutcome);
 	    }
 		
+		//si ca fonctionne lorsque le montant est minimal
 		@Test
 	    public void isConvertingAmount0() {
 	        Double goodAmount = 0.00d;
