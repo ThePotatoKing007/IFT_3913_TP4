@@ -143,7 +143,7 @@ class CurrencyConvertorTest {
 		//White box testing coverage
 		// si ca fonctionne pour les petits amouts 
 		@Test
-	    public void isConvertingVerySmallAmount10k() {
+	    public void isConvertingVerySmallAmount() {
 	        Double goodAmount = 0000.01d;
 	        String expectedOutcome = "Amount in the possible range";
 	        
