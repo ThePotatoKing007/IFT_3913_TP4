@@ -140,6 +140,15 @@ class CurrencyConvertorTest {
 	        assertThrows(exceptionClass,
 	        		() -> CurrencyConvertor.convert(goodAmount, from, to, conversion), expectedOutcome);
 	    }
+		//White box testing
+		// si ca fonctionne pour les petits amouts 
+	    public void isConvertingVerySmallAmount10k() {
+	        Double goodAmount = 0000.01d;
+	        String expectedOutcome = "Amount in the possible range";
+	        
+	        assertThrows(exceptionClass,
+	        		() -> CurrencyConvertor.convert(goodAmount, from, to, conversion), expectedOutcome);
+	    }
 		
 		
 }
